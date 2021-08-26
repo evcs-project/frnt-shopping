@@ -3,13 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
-function App() {
-  return <div>HEllo</div>;
-}
+import { BrowserRouter, Route } from "react-router-dom";
 
 ReactDOM.render(
-  <App />,
+  <BorwserRouter>
+    <App />
+  </BorwserRouter>,
 
   document.getElementById("root")
 );
