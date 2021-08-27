@@ -1,0 +1,10 @@
+diff a/src/App.js b/src/App.js	(rejected hunks)
+@@ -15,7 +15,7 @@
+           target="_blank"
+           rel="noopener noreferrer"
+         >
+-        doyeon
++          doyeonnn
+         </a>
+       </header>
+     </div>
