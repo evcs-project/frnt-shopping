@@ -1,0 +1,43 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: antiquewhite;   
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+#login_form{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.same_input{
+  padding: 5px;
+  width: 200px;
+  border-radius: 5px;
+}
+#login_button{
+  background: transparent;
+  outline: none;
+  border-radius: 5px;
+  padding: 3px;
+  color: #000;
+  width: 100%;
+}
+
+.userId_container,
+.password_container{
+  padding: 10px 0px;
+
+}
+
