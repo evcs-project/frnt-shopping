@@ -9,7 +9,7 @@ const Home = () => {
         <li className="top-bar__menu">회원가입</li>
         <li className="top-bar__menu">마이페이지</li>
       </ul>
-
+      
       <div className="top-bar__searchBox">
         <i className="fas fa-book"></i>
         <div className="top-bar__searchBox__search">
