@@ -23,8 +23,7 @@ class Login extends Component {
               <input type ="password" class = "same_input" id = "password" placeholder = "비밀번호" />
             </div>
             <div className = "login_container">
-            
-    
+              
             </div>
             <button id = "login_button"><span>로그인</span></button>
         </form>
