@@ -1,7 +1,10 @@
 import React from "react";
 import "../css/Home.css";
 
-const Home = () => {
+class Home extends Component {
+  selectRef = React.createRef();
+  
+  render(){
   return (
     <header>
       <ul className="top-bar__menus">
@@ -9,11 +12,11 @@ const Home = () => {
         <li className="top-bar__menu">회원가입</li>
         <li className="top-bar__menu">마이페이지</li>
       </ul>
-      
+
       <div className="top-bar__searchBox">
         <i className="fas fa-book"></i>
         <div className="top-bar__searchBox__search">
-          <select name="bookType" id="bookType">
+          <select ref = {this.selectRef} name="bookType" id="bookType">
             <option value="name">제목</option>
             <option value="name">저자</option>
             <option value="name">출판사</option>
@@ -28,6 +31,7 @@ const Home = () => {
       </div>
     </header>
   );
+  }
 };
 
 export default Home;

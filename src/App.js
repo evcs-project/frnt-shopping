@@ -3,7 +3,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import {useState} from 'react';
-const search= (query) => {
+
+const search = (query) => {
   const requestOption = {
     method: 'GET',
     redirect: 'follow'
@@ -16,18 +17,22 @@ const search= (query) => {
   console.log(response)})
 }
 
-function App({book}) {
-  const [books, setBooks] = useState([]);
-  
-  search('study')
 
+
+class App extends Component {
+  onchange(value){
+    console.log(value)
+  }
+
+  render(){
   return (
     <div className="App">
-      <Route path="/" exact = {true}><Home /></Route>
+      <Route path="/" exact = {true}><Home onChange = {this.onchange}/></Route>
       <Route path="/login" component = {Login} ></Route>
       <Route path="/Signup" component = {Signup} ></Route>
     </div>
   );
+  }
 }
 
 export default App;
