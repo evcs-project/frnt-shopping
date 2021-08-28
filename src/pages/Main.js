@@ -8,7 +8,7 @@ class Main extends Component {
       <div className={styles.mainConatiner}>
         <ul className={styles.ul}>
           {this.props.books.map((book) => (
-            <Content book={book} />
+            <Content key={book.id} book={book} />
           ))}
         </ul>
       </div>
