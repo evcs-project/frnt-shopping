@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import { useForm } from "react-hook-form";
 import "../css/Home.css";
+import Main from './Main'
 
 class Home extends Component {
   inputRef = React.createRef();
@@ -26,6 +27,7 @@ class Home extends Component {
 
   render() {
     return (
+      <>
       <header>
         <ul className="top-bar__menus">
           <li className="top-bar__menu">
@@ -42,7 +44,6 @@ class Home extends Component {
               ref={this.selectRef}
               name="bookType"
               id="bookType"
-              
               onChange={this.handleValueSet}
             >
               <option value="bookNm">제목</option>
@@ -58,12 +59,13 @@ class Home extends Component {
           </div>
         </div>
       </header>
+       <Main books = {this.props.books}/>
+      </>
     );
 
     const select = document.getElementById("bookType");
 
     const selectedValue = select.options[select.selectedIndex].value;
-
     console.log(selectedValue);
   }
 }
