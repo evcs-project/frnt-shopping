@@ -1,3 +1,56 @@
-.li{
+.mainConatiner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.ul {
+  margin: auto;
+}
+
+.li {
   background-color: #fff;
+  display: flex;
+  margin-bottom: 20px;
+  width: 800px;
+  padding: 10px 10px;
+}
+
+.book_Img {
+}
+
+.book_Info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.book_Info_title {
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.book_Info_category {
+  margin-top: 10px;
+}
+
+.book_Info_price {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 70px;
+}
+
+.book_Info_price span {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.book_Info_publisherwriter {
+  display: flex;
+  color: gray;
+}
+
+.book_Info_writer {
+  margin-right: 6px;
 }
