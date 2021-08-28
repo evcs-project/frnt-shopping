@@ -18,10 +18,16 @@ class Home extends Component {
   // };
 
   handleValueSet =() =>{
+    let inputValue = this.inputRef.current.value;
+
+    if(inputValue === ''){
+      alert('검색 값을 입력해주세요')
+      return;
+    }
+
     let select = "bookNm";
     const selectedValue = document.getElementById("bookType");
     select = selectedValue.options[selectedValue.selectedIndex].value;
-    let inputValue = this.inputRef.current.value;
     this.props.onChange(select, inputValue)
   }
 
@@ -44,7 +50,6 @@ class Home extends Component {
               ref={this.selectRef}
               name="bookType"
               id="bookType"
-              onChange={this.handleValueSet}
             >
               <option value="bookNm">제목</option>
               <option value="publisher">출판사</option>
@@ -62,11 +67,6 @@ class Home extends Component {
        <Main books = {this.props.books}/>
       </>
     );
-
-    const select = document.getElementById("bookType");
-
-    const selectedValue = select.options[select.selectedIndex].value;
-    console.log(selectedValue);
   }
 }
 
