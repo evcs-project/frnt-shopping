@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter, Route } from "react-router-dom";
-import Book from './book/book'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -11,4 +10,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
-

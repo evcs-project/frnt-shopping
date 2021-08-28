@@ -1,43 +1,89 @@
 import { BrowserRouter, Route } from "react-router-dom";
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import React, {Component} from 'react';
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import React, { useState } from "react";
+import _ from 'lodash'
 
-class App extends Component {
-  state = {
-    data:[  
-    ]
-  }
+function paginate(items, pageNumber, pageSize) {
+  const startIndex = (pageNumber - 1) * pageSize; // 자를 배열의 시작점
 
-  search = (select, query) => {
+  return _(items)
+    .slice(startIndex) // 시작점부터 배열을 자르되
+    .take(pageSize) // pageSize만큼의 배열을 취함
+    .value(); // lodash wrapper 객체를 regular 배열로 변환
+}
+
+function App(){
+  const [data, setData] = useState([]);
+
+  const search = (select, query) => {
     const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
+      method: "GET",
+      redirect: "follow",
     };
 
-    fetch(`http://13.125.22.103:8080/api/book/search?size=25&page=0&${select}=${query}`, requestOptions)
-      .then(response => response.json())
-      .then(result => result.content.map(item => ({title: item.bookNm})))
-      .then(items => {this.setState({data:items}) 
-      console.log(items)
-    })
-      .catch(error => console.log('error', error))
-    };
+    console.log(select, query);
 
-  handleValueSet = (select, inputValue) => {
-    this.search(select, inputValue)
+    if (select !== "" && query !== "") {
+      fetch(
+        `http://13.125.22.103:8080/api/book/search?size=25&page=0&${select}=${query}`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (result.content.length === 0) {
+            alert("찾으시는 책이 없습니다.");
+          }
+
+          return result.content.map((item) => ({
+            id: item.bookId,
+            title: item.bookNm,
+            category: item.categoryName,
+            price: item.price,
+            publisher: item.publisher,
+            img: item.thumbnailUrl,
+            writer: item.writer,
+          }));
+        })
+        .then((items) => {
+          setData(items)
+        })
+        .catch((error) => console.log("error", error));
+    }
+  };
+
+   const pageSize = 2
+   const itemsCount=  10
+  const currentPage=  1
+
+  const pagedBooks = paginate(data, currentPage, pageSize)
+
+  const handlePageChange = (page) => {
+    setData({ ...data, currentPage: page });
   }
+
+   const handleValueSet = (select, inputValue) => {
+    search(select, inputValue);
+  };
   
-  render(){
     return (
       <div className="App">
-        <Route path="/" exact = {true}><Home books = {this.state.data} onChange = {this.handleValueSet} /></Route>
-        <Route path="/login" component = {Login} ></Route>
-        <Route path="/Signup" component = {Signup} ></Route>
+        <Route path="/" exact={true}>
+          <Home
+            books={pagedBooks}
+            onChange={handleValueSet}
+            onPageChange={handlePageChange}
+            pageSize= {pageSize} 
+            itemsCount={itemsCount} 
+            currentPage={currentPage} 
+          />
+        </Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/Signup" component={Signup}></Route>
       </div>
-  );
-  }
+    );
 }
 
 export default App;
