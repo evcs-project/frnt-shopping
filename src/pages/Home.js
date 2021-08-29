@@ -4,7 +4,7 @@ import "../css/Home.css";
 import Main from "./Main";
 import Pagination from './Pagination'
 
-function Home({ pageSize, itemsCount, currentPage, onPageChange, books, onChange }) {
+function Home({currentPage, onPageChange, books, onChange }) {
 
   const inputRef = useRef();
 
@@ -69,8 +69,7 @@ function Home({ pageSize, itemsCount, currentPage, onPageChange, books, onChange
         </div>
       </header>
       <Main books={books} />
-      <Pagination pageSize={pageSize}
-        itemsCount={itemsCount}
+      <Pagination
         currentPage={currentPage}
         onPageChange={onPageChange}
       ></Pagination>

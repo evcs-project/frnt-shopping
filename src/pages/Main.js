@@ -9,7 +9,7 @@ function Main({books}) {
         <ul className={styles.ul}>
           {
             books.map((book, index) => (
-              <Content key = {index} book={book} />
+              <Content key = {index} book = {book} />
               )
             )
           }
