@@ -4,6 +4,7 @@ import styles from "../css/content.module.css";
 
 function Content({book}) {
     return (
+      
       <li className={styles.li}>
         <div className={styles.book_Img}>
           <img src={book.img}></img>
@@ -27,6 +28,7 @@ function Content({book}) {
           </div>
         </div>
       </li>
+      
     );
 }
 
