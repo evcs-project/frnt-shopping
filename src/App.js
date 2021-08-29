@@ -9,12 +9,11 @@ let selectLS = localStorage.getItem("select");
 
 let totalElements;
 let totalPages;
-let currentPage;
 
 function App() {
   const [data, setData] = useState([]);
 
-  let pageCount = 0;
+  let currentPage = 0;
 
   let pageNumber;
   const search = (select, query) => {
@@ -25,7 +24,7 @@ function App() {
 
     if (select !== "" && query !== "") {
       fetch(
-        `http://13.125.22.103:8080/api/book/search?size=5&page=0&${select}=${query}`,
+        `http://13.125.22.103:8080/api/book/search?size=10&page=0&${select}=${query}`,
         requestOptions
       )
         .then((response) => response.json())
@@ -56,13 +55,18 @@ function App() {
     }
   };
 
+ let start = 0;
+ let end = 0;
+
   function handlePageChange(page) {
     // setData({ ...data, currentPage: page });
 
     let queryLS = localStorage.getItem("query");
     let selectLS = localStorage.getItem("select");
-    let pageNum = page - 1;
-    currentPage = pageNum + 1;
+    currentPage = page - 1;
+    
+    start = page;
+    end = page + 9;
 
     const requestOptions = {
       method: "GET",
@@ -70,7 +74,7 @@ function App() {
     };
 
     fetch(
-      `http://13.125.22.103:8080/api/book/search?size=5&page=${pageNum}&${selectLS}=${queryLS}`,
+      `http://13.125.22.103:8080/api/book/search?size=10&page=${currentPage}&${selectLS}=${queryLS}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -100,7 +104,6 @@ function App() {
 
   const handleValueSet = (select, inputValue) => {
     search(select, inputValue);
-
     localStorage.setItem("query", inputValue);
     localStorage.setItem("select", select);
   };
@@ -114,6 +117,8 @@ function App() {
           onChange={handleValueSet}
           onPageChange={handlePageChange}
           currentPage={currentPage}
+          start = {start}
+          end = {end}
         />
       </Route>
       <Route path="/login" component={Login}></Route>

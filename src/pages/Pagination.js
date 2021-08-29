@@ -8,52 +8,43 @@ const Pagination = ({
   onPageChange,
   itemsCount,
   currentPage,
+  start,
+  end
 }) => {
   const pageCount = totalPages;
-
+  console.log(start)
+  console.log(end)
   // if (pageCount === 1) return null;
   let pages = _.range(1, pageCount + 1);
 
-  let realPagesArr = pages;
-  console.log(realPagesArr);
+  console.log(pages)
+  // let realPagesArr = pages;
+  // console.log(realPagesArr);
 
   if (pages.length > 10) {
     console.log("page개수 10보다 큼");
     pages = pages.slice(0, 10);
   }
 
-  // let currentShowingPage = pages.length;
+  
+  // let start = 10;
+  // let end = 20;
 
-  // console.log(currentShowingPage);
+  // let realPagesArr2 = new Array();
 
-  // let currentShowingPageArr = [];
+  // function showPage(pageStart, pageEnd) {
+  //   console.log(pageStart, pageEnd, "자름");
+  //   realPagesArr2 = realPagesArr.slice(pageStart, pageEnd);
 
-  // function showPage(currentShowingPage) {
-  //   for (let i = 1; i <= 10; i++) {
-  //     currentShowingPageArr.push(currentShowingPage + i);
-  //   }
-  //   console.log(currentShowingPageArr);
+  //   start += 10;
+  //   end += 10;
   // }
-  let start = 10;
-  let end = 20;
-
-  // 34
-
-  let realPagesArr2 = new Array();
-
-  function showPage(pageStart, pageEnd) {
-    console.log(pageStart, pageEnd, "자름");
-    realPagesArr2 = realPagesArr.slice(pageStart, pageEnd);
-
-    start += 10;
-    end += 10;
-  }
-  console.log(realPagesArr2);
-
+  // console.log(realPagesArr2);
+  let increasePage = 1;
   return (
     <nav>
       <ul className="pagination">
-        {realPagesArr2.map((page) => (
+        {pages.map((page) => (
           <li
             key={page}
             className={page === currentPage ? "page-item active" : "page-item"}
@@ -67,9 +58,12 @@ const Pagination = ({
         ))}
       </ul>
       <button
-        onClick={() => showPage(start, end)}
         className={pages.length === 10 ? "pageBtn active" : "pageBtn"}
-      >
+        onClick={() => {
+          onPageChange(increasePage * 10 + 1)
+          increasePage++;
+        }
+        }>
         버튼
       </button>
     </nav>
