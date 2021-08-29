@@ -25,6 +25,8 @@ let totalElements;
 function App() {
   const [data, setData] = useState([]);
 
+  let currentPage;
+
   const search = (select, query) => {
     const requestOptions = {
       method: "GET",
@@ -65,13 +67,17 @@ function App() {
 
   const pageSize = 5;
   const itemsCount = totalElements;
-  const currentPage = 1;
+
+  console.log("전역: ", currentPage);
 
   const pagedBooks = paginate(data, currentPage, pageSize);
 
   const handlePageChange = (page) => {
     // setData({ ...data, currentPage: page });
 
+    currentPage = page;
+
+    console.log("지역: ", currentPage);
     let queryLS = localStorage.getItem("query");
     let selectLS = localStorage.getItem("select");
     let pageNum = page - 1;
@@ -86,6 +92,7 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
+
         if (result.content.length === 0) {
           alert("찾으시는 책이 없습니다.");
         }
@@ -102,10 +109,11 @@ function App() {
       })
       .then((items) => {
         setData(items);
+        console.log(items);
       })
       .catch((error) => console.log("error", error));
   };
-  
+
   const handleValueSet = (select, inputValue) => {
     search(select, inputValue);
 
@@ -113,6 +121,7 @@ function App() {
     localStorage.setItem("select", select);
   };
 
+  console.log("리턴직전: ", currentPage);
   return (
     <div className="App">
       <Route path="/" exact={true}>

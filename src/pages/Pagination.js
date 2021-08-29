@@ -8,7 +8,7 @@ const Pagination = ({ pageSize, onPageChange, itemsCount, currentPage }) => {
   if (pageCount === 1) return null;
 
   const pages = _.range(1, pageCount + 1);
-
+  console.log("pagination 함수 실행됨");
   return (
     <nav>
       <ul className="pagination">
