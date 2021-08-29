@@ -4,7 +4,7 @@ import "../css/Home.css";
 import Main from "./Main";
 import Pagination from './Pagination'
 
-function Home({currentPage, onPageChange, books, onChange }) {
+function Home({totalPages, onPageChange, books, onChange,currentPage }) {
 
   const inputRef = useRef();
 
@@ -63,14 +63,13 @@ function Home({currentPage, onPageChange, books, onChange }) {
               <button onClick={handleValueSet} id="searchBtn">
                 <i className="fas fa-search fa-2x"></i>
             </button>
-         
-          
         </div>
         </div>
       </header>
       <Main books={books} />
       <Pagination
-        currentPage={currentPage}
+        currentPage = {currentPage}
+        totalPages = {totalPages}
         onPageChange={onPageChange}
       ></Pagination>
     </>

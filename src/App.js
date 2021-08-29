@@ -11,8 +11,7 @@ let totalElements;
 
 function App() {
   const [data, setData] = useState([]);
-  
-  let pageCount = 0;
+  let totalPages = 0;
 
   const search = (select, query) => {
     const requestOptions = {
@@ -30,8 +29,7 @@ function App() {
       .then((response) => response.json())
         .then((result) => {
           console.log(result);
-          // result.totalpage
-          totalElements = result.totalElements;
+          totalPages = result.totalPages;
 
           if (result.content.length === 0) {
             alert("찾으시는 책이 없습니다.");
@@ -54,12 +52,13 @@ function App() {
     }
   };
 
-  let currentPage = 1;
+  let currentPage = 0;
 
   function handlePageChange (page) {
     // setData({ ...data, currentPage: page });
     currentPage = page;
-   
+    console.log(currentPage)
+    
     let queryLS = localStorage.getItem("query");
     let selectLS = localStorage.getItem("select");
     let pageNum = page - 1;
@@ -70,7 +69,7 @@ function App() {
     };
 
     fetch(
-      `http://13.125.22.103:8080/api/book/search?size=5&page=${pageNum}&${selectLS}=${queryLS}`,
+      `http://13.125.22.103:8080/api/book/search?size=10&page=${pageNum}&${selectLS}=${queryLS}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -108,9 +107,11 @@ function App() {
       <Route path="/" exact={true}>
         <Home
           books={data}
+          totalPages = {totalPages}
           onChange={handleValueSet}
           onPageChange={handlePageChange}
           currentPage={currentPage}
+
         />
       </Route>
       <Route path="/login" component={Login}></Route>
