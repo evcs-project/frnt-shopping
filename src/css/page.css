@@ -1,0 +1,14 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.page-item {
+  list-style: none;
+  margin: 0px 10px;
+}
+
+.page-item.active {
+  color: blue;
+  font-weight: bold;
+}

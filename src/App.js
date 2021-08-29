@@ -14,8 +14,8 @@ function paginate(items, pageNumber, pageSize) {
     .value(); // lodash wrapper 객체를 regular 배열로 변환
 }
 
-const queryLS = localStorage.getItem("query");
-const selectLS = localStorage.getItem("select");
+let queryLS = localStorage.getItem("query");
+let selectLS = localStorage.getItem("select");
 
 console.log("query:", queryLS);
 console.log("select:", selectLS);
@@ -60,14 +60,19 @@ function App() {
     }
   };
 
-  const pageSize = 3;
-  const itemsCount = 10;
-  const currentPage = 1;
+  const pageSize = 4;
+  const itemsCount = 100;
+  let currentPage = 1;
 
   const pagedBooks = paginate(data, currentPage, pageSize);
 
   const handlePageChange = (page) => {
     // setData({ ...data, currentPage: page });
+
+    queryLS = localStorage.getItem("query");
+    selectLS = localStorage.getItem("select");
+
+    currentPage = page;
     const requestOptions = {
       method: "GET",
       redirect: "follow",
