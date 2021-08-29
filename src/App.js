@@ -105,7 +105,7 @@ function App() {
       })
       .catch((error) => console.log("error", error));
   };
-
+  
   const handleValueSet = (select, inputValue) => {
     search(select, inputValue);
 
