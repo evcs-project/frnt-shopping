@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
 }
-
+a {
+  text-decoration: none;
+}
 header {
   width: 100%;
-  background-color: orange;
-  height: 150px;
+  height: 200px;
   display: flex;
   flex-direction: column;
 }
@@ -35,7 +36,7 @@ header {
   align-items: center;
   height: 100%;
   width: 100%;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   border-bottom: solid 1px rgba(36, 104, 252, 0.8);
 }
 
@@ -46,6 +47,7 @@ header {
   justify-content: space-between;
   z-index: 0;
   padding: 0;
+
   border: solid 2.5px rgb(36, 104, 252);
   border-radius: 20px;
   box-shadow: rgba(36, 104, 252, 0.3) 2px 2px 6px;
