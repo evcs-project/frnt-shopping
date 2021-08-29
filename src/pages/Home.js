@@ -2,10 +2,9 @@ import React, { Component, useRef } from "react";
 // import { useForm } from "react-hook-form";
 import "../css/Home.css";
 import Main from "./Main";
-import Pagination from './Pagination'
+import Pagination from "./Pagination";
 
-function Home({ pageSize, itemsCount, currentPage, onPageChange, books, onChange }) {
-
+function Home({ totalPages, currentPage, onPageChange, books, onChange }) {
   const inputRef = useRef();
 
   const handleValueSet = () => {
@@ -32,19 +31,17 @@ function Home({ pageSize, itemsCount, currentPage, onPageChange, books, onChange
           <li className="top-bar__menu">
             <a href="/Signup">회원가입</a>
           </li>
-          <li className="top-bar__menu">마이페이지
-          </li>
-
+          <li className="top-bar__menu">마이페이지</li>
         </ul>
 
         <div className="top-bar__searchBox">
           <div className="top-bar__search">
             <div className="top-bar__category">
-            <select name="bookType" id="bookType">
-              <option value="bookNm">제목</option>
-              <option value="publisher">출판사</option>
-              <option value="writer">저자</option>
-            </select>
+              <select name="bookType" id="bookType">
+                <option value="bookNm">제목</option>
+                <option value="publisher">출판사</option>
+                <option value="writer">저자</option>
+              </select>
             </div>
             <input
               onKeyPress={(e) => {
@@ -56,21 +53,19 @@ function Home({ pageSize, itemsCount, currentPage, onPageChange, books, onChange
               ref={inputRef}
               type="text"
               id="search"
-                maxLength="15"
-                placeholder="for search"
+              maxLength="15"
+              placeholder="for search"
             ></input>
-              
-              <button onClick={handleValueSet} id="searchBtn">
-                <i className="fas fa-search fa-2x"></i>
+
+            <button onClick={handleValueSet} id="searchBtn">
+              <i className="fas fa-search fa-2x"></i>
             </button>
-         
-          
-        </div>
+          </div>
         </div>
       </header>
       <Main books={books} />
-      <Pagination pageSize={pageSize}
-        itemsCount={itemsCount}
+      <Pagination
+        totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={onPageChange}
       ></Pagination>

@@ -2,12 +2,18 @@ import React from "react";
 import _ from "lodash";
 import "../css/page.css";
 
-const Pagination = ({ pageSize, onPageChange, itemsCount, currentPage }) => {
-  const pageCount = Math.ceil(itemsCount / pageSize);
+const Pagination = ({
+  totalPages,
+  pageSize,
+  onPageChange,
+  itemsCount,
+  currentPage,
+}) => {
+  const pageCount = totalPages;
 
-  if (pageCount === 1) return null;
-
+  // if (pageCount === 1) return null;
   const pages = _.range(1, pageCount + 1);
+
   console.log("pagination 함수 실행됨");
   return (
     <nav>

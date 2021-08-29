@@ -9,7 +9,7 @@ function Content({book}) {
         <div className={styles.book_Img}>
           <img src={book.img}></img>
         </div>
-        <div className={styles.book_Info}>
+        <div className = {styles.book_Info}>
           <div className={styles.book_Info_title}>{book.title}</div>
           <div className={styles.book_Info_publisherwriter}>
             <div className={styles.book_Info_writer}>
