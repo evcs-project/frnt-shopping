@@ -12,3 +12,11 @@
   color: blue;
   font-weight: bold;
 }
+
+.pageBtn {
+  display: none;
+}
+
+.pageBtn.active {
+  display: block;
+}
