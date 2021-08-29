@@ -10,47 +10,59 @@ class Signup extends Component{
         <li className="top-bar__menu"><a href = "/Login">로그인</a></li>
         <li className="top-bar__menu">마이페이지</li>
       </ul>
-    <div class="signUp-container">
+
+    <div className="signUp-container">
+    <div className="border2">
+      <div className="contents">
       <form type="submit" id= "signup_form" >
-        <h2 class="signUp_title">회원가입</h2>
-      
-        <div class="signup_formbox">
-          <div class="input-frame">
-            <div class="input_box">
+        <h2 className="pages-sub2">회원가입</h2>
+        
+            <div className="input_box">
+              <div className="name-box">
               <label for="id">아이디</label>
+              </div>
               <input
                 type="text"
                 id="signUpId"
-                class="signup_input"
+                className="signup_input"
                 maxlength="20"
+                placeholder="10자리 이내로 입력"
               />
             </div>
        
-            <div class="input_box">
+            <div className="input_box">
+            <div className="name-box">
               <label for="pswd1">비밀번호</label>
+              </div>
               <input
                 type="password"
                 id="signUpPw"
-                class="signup_input"
+                className="signup_input"
                 maxlength="20"
+                placeholder="********"
               />
             </div>
         
-            <div class="input_box">
+            <div className="input_box">
+            <div className="name-box">
               <label for="pswd2">비밀번호 확인</label>
+              </div>
               <input
                 type="password"
                 id="pswd2"
-                class="signup_input"
+                className="signup_input"
                 maxlength="20"
+                placeholder="********"
               />
             </div>
-          </div>
-          <div class="signUp-Box">
-            <button id="signUp-button">회원가입</button>
-          </div>
-        </div>
+
+          <div className="signUp-btn__box"></div>
+            <button class="signUp-button">회원가입</button>
+          
+        
       </form>
+    </div>
+    </div>
     </div>
     </>
     );

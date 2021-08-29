@@ -14,18 +14,96 @@ header {
   display: flex;
   list-style: none;
   justify-content: flex-end;
-  background-color: palegoldenrod;
+  background-color: rgb(94, 145, 255);
+  color: white;
   margin: 0;
   padding: 7px 0px;
 }
 
 .top-bar__menu {
   margin: 0px 5px;
+  padding: 3px;
+}
+.top-bar__menu a:visited {
+  color: white;
 }
 
 .top-bar__searchBox {
+  top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
+  padding-bottom: 40px;
+  border-bottom: solid 1px rgba(36, 104, 252, 0.8);
+}
+
+.top-bar__search {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 0;
+  padding: 0;
+  border: solid 2.5px rgb(36, 104, 252);
+  border-radius: 20px;
+  box-shadow: rgba(36, 104, 252, 0.3) 2px 2px 6px;
+}
+
+.top-bar__category {
+  position: absolute;
+  display: flex;
+  width: 50px;
+  height: 40px;
+  z-index: 10;
+  left: 10px;
+}
+
+#bookType {
+  border: none;
+  border-radius: 20px;
+}
+
+#search {
+  width: 500px;
+  height: 40px;
+  border-radius: 20px;
+  z-index: 0;
+  border: none;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 20px;
+}
+
+#search:focus {
+  outline: none;
+}
+
+#search::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.top-bar__category:focus,
+#bookType {
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--blackColor);
+}
+
+#searchBtn {
+  position: absolute;
+  display: flex;
+  z-index: 15;
+  justify-content: left;
+  border: none;
+  background-color: white;
+  border-radius: 10px;
+  left: 450px;
+  color: rgb(36, 104, 252);
+}
+
+#searchBtn:hover {
+  cursor: pointer;
 }
