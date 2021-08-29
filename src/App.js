@@ -14,11 +14,13 @@ function paginate(items, pageNumber, pageSize) {
     .value(); // lodash wrapper 객체를 regular 배열로 변환
 }
 
-const queryLS = localStorage.getItem("query");
-const selectLS = localStorage.getItem("select");
+let queryLS = localStorage.getItem("query");
+let selectLS = localStorage.getItem("select");
 
 console.log("query:", queryLS);
 console.log("select:", selectLS);
+
+let totalElements;
 
 function App() {
   const [data, setData] = useState([]);
@@ -38,7 +40,8 @@ function App() {
       )
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
+          console.log(result.totalElements);
+          totalElements = result.totalElements;
           if (result.content.length === 0) {
             alert("찾으시는 책이 없습니다.");
           }
@@ -60,20 +63,24 @@ function App() {
     }
   };
 
-  const pageSize = 4;
-  const itemsCount = 100;
+  const pageSize = 5;
+  const itemsCount = totalElements;
   const currentPage = 1;
 
   const pagedBooks = paginate(data, currentPage, pageSize);
 
   const handlePageChange = (page) => {
     // setData({ ...data, currentPage: page });
+
+    let queryLS = localStorage.getItem("query");
+    let selectLS = localStorage.getItem("select");
+    let pageNum = page - 1;
     const requestOptions = {
       method: "GET",
       redirect: "follow",
     };
     fetch(
-      `http://13.125.22.103:8080/api/book/search?size=5&page=${page}&${selectLS}=${queryLS}`,
+      `http://13.125.22.103:8080/api/book/search?size=5&page=${pageNum}&${selectLS}=${queryLS}`,
       requestOptions
     )
       .then((response) => response.json())
