@@ -13,14 +13,31 @@ let totalPages;
 function App() {
   const [data, setData] = useState([]);
 
-  let currentPage = 0;
+  const [point, setPoint] = useState(
+    {
+    start: 0,
+    end: 10,
+    increasePage : 0
+  }
+)
 
+  let currentPage = 0;
   let pageNumber;
+
   const search = (select, query) => {
+    console.log('search 함수 실행')
     const requestOptions = {
       method: "GET",
       redirect: "follow",
     };
+
+    const point = {
+      start: 0,
+      end: 10,
+      increasePage : 0
+    }
+
+    setPoint(point)
 
     if (select !== "" && query !== "") {
       fetch(
@@ -55,18 +72,21 @@ function App() {
     }
   };
 
- let start = 0;
- let end = 0;
-
-  function handlePageChange(page) {
+  function handlePageChange(page, start, end, increasePage) {
     // setData({ ...data, currentPage: page });
-
     let queryLS = localStorage.getItem("query");
     let selectLS = localStorage.getItem("select");
     currentPage = page - 1;
     
-    start = page;
-    end = page + 9;
+    const point = {
+      start: start,
+      end:end,
+      increasePage: increasePage
+    }
+
+    setPoint(point)
+
+    console.log('point : ', point)
 
     const requestOptions = {
       method: "GET",
@@ -80,10 +100,6 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         pageNumber = result.number;
-
-        if (result.content.length === 0) {
-          alert("찾으시는 책이 없습니다.");
-        }
 
         return result.content.map((item) => ({
           id: item.bookId,
@@ -117,8 +133,7 @@ function App() {
           onChange={handleValueSet}
           onPageChange={handlePageChange}
           currentPage={currentPage}
-          start = {start}
-          end = {end}
+          point = {point}
         />
       </Route>
       <Route path="/login" component={Login}></Route>

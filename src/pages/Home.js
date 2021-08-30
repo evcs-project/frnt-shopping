@@ -4,14 +4,14 @@ import "../css/Home.css";
 import Main from "./Main";
 import Pagination from "./Pagination";
 
-function Home({start, end, totalPages, currentPage, onPageChange, books, onChange }) {
+function Home({totalPages, point, setPoint, currentPage, onPageChange, books, onChange }) {
   const inputRef = useRef();
 
   const handleValueSet = () => {
     if (inputRef.current.value == "") {
       alert("검색어를 입력하세요.");
     }
-
+    
     let select = "bookNm";
     const selectedValue = document.getElementById("bookType");
     select = selectedValue.options[selectedValue.selectedIndex].value;
@@ -68,8 +68,8 @@ function Home({start, end, totalPages, currentPage, onPageChange, books, onChang
         totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={onPageChange}
-        start = {start}
-        end = {end}
+       setPoint = {setPoint}
+       point = {point}
       ></Pagination>
     </>
   );
