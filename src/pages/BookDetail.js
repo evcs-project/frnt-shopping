@@ -34,7 +34,16 @@ function BookDetail({ bookDetail, onChange }) {
       </div>
       <div className="bookInfo__section">
         <div className="bookInfo__section__title">목차</div>
-        {bookDetail.section}
+        {bookDetail.section != null
+          ? bookDetail.section.split("\n").map((line) => {
+              return (
+                <>
+                  {line != "" ? "-" : null} {line}
+                  <br></br>
+                </>
+              );
+            })
+          : null}
       </div>
     </>
   );
