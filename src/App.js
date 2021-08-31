@@ -8,22 +8,20 @@ import Main from './pages/Main'
 
 let queryLS = localStorage.getItem("query");
 let selectLS = localStorage.getItem("select");
-
 let totalElements;
-let totalPages;
 
+let totalPages;
 let currentPage = 0;
 
 function App() {
-
   const [data, setData] = useState([]);
   const [point, setPoint] = useState({
     start: 0,
     end: 10,
     increasePage: 0,
   });
-  const [bookDetail, setBookDetail] = useState([])
 
+  const [bookDetail, setBookDetail] = useState([])
   let pageNumber;
 
   const search = (select, query) => {
@@ -89,7 +87,6 @@ function App() {
     };
 
     setPoint(point);
-
     console.log("point : ", point);
 
     const requestOptions = {
@@ -130,7 +127,6 @@ function App() {
 
   function handleBookId(bookId) {
     // const [bookDetail, setBookDetail] = useState([]);
-  
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -140,7 +136,6 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-
         return result;
       })
       .then((items) => {
@@ -169,7 +164,6 @@ function App() {
          <Route path="/BookDetail">
           <BookDetail onChange={handleValueSet} bookDetail = {bookDetail}></BookDetail>
         </Route>
-        <Route path = "/Main" component = {Main}></Route>
       </div>
     </BrowserRouter>
   );

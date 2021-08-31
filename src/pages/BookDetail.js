@@ -18,6 +18,7 @@ function BookDetail({bookDetail, onChange}) {
       <div className="bookInfo__publisher">{bookDetail.publisher}</div>
       <div className="bookInfo__price">{bookDetail.price}</div>
       <div className="bookInfo__category">{bookDetail.categoryName}</div>
+      <div className="bookInfo__description">{bookDetail.description}</div>
     </div>
   </div>
 </>

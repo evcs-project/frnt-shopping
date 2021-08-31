@@ -4,13 +4,14 @@ import { useHistory, Link } from "react-router-dom";
 
 export const Header = ({onChange}) => {
   const inputRef = useRef();
+  let history = useHistory();
 
-  const handleValueSet = () => {
+  const HandleValueSet = () => {
     console.log('header')
     if (inputRef.current.value == "") {
       alert("검색어를 입력하세요.");
     }
-
+   
     let select = "bookNm";
     const selectedValue = document.getElementById("bookType");
     select = selectedValue.options[selectedValue.selectedIndex].value;
@@ -18,9 +19,11 @@ export const Header = ({onChange}) => {
 
     onChange(select, inputValue);
     inputRef.current.value = "";
+    history.push('/')
   };
 
   return (
+    <>
     <header>
     <ul className="top-bar__menus">
       <li className="top-bar__menu">
@@ -44,7 +47,7 @@ export const Header = ({onChange}) => {
         <input
           onKeyPress={(e) => {
             if (e.key === "Enter") {
-              handleValueSet();
+              HandleValueSet();
               inputRef.current.value = "";
             }
           }}
@@ -54,12 +57,13 @@ export const Header = ({onChange}) => {
           maxLength="15"
           placeholder="for search"
         ></input>
-        <button onClick={handleValueSet} id="searchBtn">
+        <button onClick={HandleValueSet} id="searchBtn">
           <i className="fas fa-search fa-2x"></i>
         </button>
       </div>
     </div>
   </header>
+  </>
   )
 }
 
