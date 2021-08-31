@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { BrowserRouter, Route } from "react-router-dom";
 import styles from "../css/content.module.css";
 
 function Content({book}) {
     return (
-      
+      <>
       <li className={styles.li}>
         <div className={styles.book_Img}>
           <img src={book.img}></img>
@@ -28,7 +28,7 @@ function Content({book}) {
           </div>
         </div>
       </li>
-      
+      </>
     );
 }
 
