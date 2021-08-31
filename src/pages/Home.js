@@ -1,17 +1,26 @@
 import React, { Component, useRef } from "react";
 // import { useForm } from "react-hook-form";
 import "../css/Home.css";
+import BookDetail from "./BookDetail";
 import Main from "./Main";
 import Pagination from "./Pagination";
 
-function Home({totalPages, point, setPoint, currentPage, onPageChange, books, onChange }) {
+function Home({
+  totalPages,
+  point,
+  setPoint,
+  currentPage,
+  onPageChange,
+  books,
+  onChange,
+}) {
   const inputRef = useRef();
 
   const handleValueSet = () => {
     if (inputRef.current.value == "") {
       alert("검색어를 입력하세요.");
     }
-    
+
     let select = "bookNm";
     const selectedValue = document.getElementById("bookType");
     select = selectedValue.options[selectedValue.selectedIndex].value;
@@ -68,8 +77,8 @@ function Home({totalPages, point, setPoint, currentPage, onPageChange, books, on
         totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={onPageChange}
-       setPoint = {setPoint}
-       point = {point}
+        setPoint={setPoint}
+        point={point}
       ></Pagination>
     </>
   );

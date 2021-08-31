@@ -1,8 +1,9 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter, BrowserRouter, Route, Router } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import React, { useState } from "react";
+import BookDetail from "./pages/BookDetail";
 
 let queryLS = localStorage.getItem("query");
 let selectLS = localStorage.getItem("select");
@@ -10,22 +11,21 @@ let selectLS = localStorage.getItem("select");
 let totalElements;
 let totalPages;
 
+let currentPage = 0;
+
 function App() {
   const [data, setData] = useState([]);
 
-  const [point, setPoint] = useState(
-    {
+  const [point, setPoint] = useState({
     start: 0,
     end: 10,
-    increasePage : 0
-  }
-)
+    increasePage: 0,
+  });
 
-  let currentPage = 0;
   let pageNumber;
 
   const search = (select, query) => {
-    console.log('search 함수 실행')
+    console.log("search 함수 실행");
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -34,10 +34,10 @@ function App() {
     const point = {
       start: 0,
       end: 10,
-      increasePage : 0
-    }
+      increasePage: 0,
+    };
 
-    setPoint(point)
+    setPoint(point);
 
     if (select !== "" && query !== "") {
       fetch(
@@ -56,6 +56,7 @@ function App() {
           }
 
           return result.content.map((item) => ({
+            isbn: item.isbn,
             id: item.bookId,
             title: item.bookNm,
             category: item.categoryName,
@@ -77,16 +78,16 @@ function App() {
     let queryLS = localStorage.getItem("query");
     let selectLS = localStorage.getItem("select");
     currentPage = page - 1;
-    
+
     const point = {
       start: start,
-      end:end,
-      increasePage: increasePage
-    }
+      end: end,
+      increasePage: increasePage,
+    };
 
-    setPoint(point)
+    setPoint(point);
 
-    console.log('point : ', point)
+    console.log("point : ", point);
 
     const requestOptions = {
       method: "GET",
@@ -100,8 +101,10 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         pageNumber = result.number;
+        console.log(result);
 
         return result.content.map((item) => ({
+          isbn: item.isbn,
           id: item.bookId,
           title: item.bookNm,
           category: item.categoryName,
@@ -125,20 +128,24 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Route path="/" exact={true}>
-        <Home
-          totalPages={totalPages}
-          books={data}
-          onChange={handleValueSet}
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-          point = {point}
-        />
-      </Route>
-      <Route path="/login" component={Login}></Route>
-      <Route path="/Signup" component={Signup}></Route>
-    </div>
+    <HashRouter>
+      <div className="App">
+        <Route path="/" exact={true}>
+          <Home
+            totalPages={totalPages}
+            books={data}
+            onChange={handleValueSet}
+            onPageChange={handlePageChange}
+            currentPage={currentPage}
+            point={point}
+          />
+        </Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/Signup" component={Signup}></Route>
+
+        <Route path="/BookDetail" component={BookDetail}></Route>
+      </div>
+    </HashRouter>
   );
 }
 
