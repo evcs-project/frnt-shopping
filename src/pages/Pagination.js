@@ -12,7 +12,7 @@ const Pagination = ({
   // if (pageCount === 1) return null;
   let pages = _.range(1, totalPages + 1);
 
-  console.log(currentPage);
+  console.log(pages);
 
   let startPage = point.start;
   let endPage = point.end;
@@ -41,8 +41,6 @@ const Pagination = ({
   //   end += 10;
   // }
   // console.log(realPagesArr2);
-
-  console.log(point.increasePage);
 
   return (
     <nav className="pageContainer">
