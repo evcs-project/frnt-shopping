@@ -126,6 +126,28 @@ function App() {
     localStorage.setItem("select", select);
   };
 
+  function handleBookId(bookId) {
+    // const [bookDetail, setBookDetail] = useState([]);
+
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`http://13.125.22.103:8080/api/book/${bookId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+
+        return result;
+      })
+      .then((items) => {
+        // setBookDetail(items);
+        console.log(items);
+      })
+      .catch((error) => console.log("error", error));
+  }
+
   return (
     <HashRouter>
       <div className="App">
@@ -141,8 +163,9 @@ function App() {
         </Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/Signup" component={Signup}></Route>
-
-        <Route path="/BookDetail" component={BookDetail}></Route>
+        <Route path="/BookDetail/:id">
+          <BookDetail handleBookId={handleBookId}></BookDetail>
+        </Route>
       </div>
     </HashRouter>
   );
