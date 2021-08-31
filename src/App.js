@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import React, { useState } from "react";
 import BookDetail from "./pages/BookDetail";
+import Main from './pages/Main'
 
 let queryLS = localStorage.getItem("query");
 let selectLS = localStorage.getItem("select");
@@ -14,13 +15,14 @@ let totalPages;
 let currentPage = 0;
 
 function App() {
-  const [data, setData] = useState([]);
 
+  const [data, setData] = useState([]);
   const [point, setPoint] = useState({
     start: 0,
     end: 10,
     increasePage: 0,
   });
+  const [bookDetail, setBookDetail] = useState([])
 
   let pageNumber;
 
@@ -128,7 +130,7 @@ function App() {
 
   function handleBookId(bookId) {
     // const [bookDetail, setBookDetail] = useState([]);
-
+  
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -142,14 +144,14 @@ function App() {
         return result;
       })
       .then((items) => {
-        // setBookDetail(items);
-        console.log(items);
+        setBookDetail(items);
+       
       })
       .catch((error) => console.log("error", error));
   }
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="App">
         <Route path="/" exact={true}>
           <Home
@@ -159,15 +161,17 @@ function App() {
             onPageChange={handlePageChange}
             currentPage={currentPage}
             point={point}
+            handleBookId= {handleBookId}
           />
         </Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/Signup" component={Signup}></Route>
-        <Route path="/BookDetail/:id">
-          <BookDetail handleBookId={handleBookId}></BookDetail>
+         <Route path="/BookDetail">
+          <BookDetail onChange={handleValueSet} bookDetail = {bookDetail}></BookDetail>
         </Route>
+        <Route path = "/Main" component = {Main}></Route>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

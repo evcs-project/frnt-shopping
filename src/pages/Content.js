@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-
 import styles from "../css/content.module.css";
 import { Link, Route } from "react-router-dom";
-import BookDetail from "./BookDetail";
 
-function Content({ book }) {
-  console.log(book);
+function Content({ book, handleBookId }) {
+ 
+  const onHandleBookId = () =>{
+    handleBookId(book.id)
+  }
+
   return (
     <>
       <Link
         to={{
-          pathname: `/BookDetail/${book.id}`,
+          pathname: `/BookDetail`,
           state: {
             book: book,
           },
         }}
       >
-        <li className={styles.li}>
+        <li className={styles.li} onClick = {onHandleBookId}>
           <div className={styles.book_Img}>
             <img src={book.img}></img>
           </div>
@@ -35,7 +37,7 @@ function Content({ book }) {
           </div>
         </li>
       </Link>
-    </>
+      </>
   );
 }
 

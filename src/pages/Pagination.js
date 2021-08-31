@@ -62,7 +62,7 @@ const Pagination = ({
           );
         }}
       >
-        <i class="fas fa-angle-double-left"></i>
+        <i className ="fas fa-angle-double-left"></i>
       </button>
       <button
         className={
@@ -80,7 +80,7 @@ const Pagination = ({
           );
         }}
       >
-        <i class="fas fa-chevron-left"></i>
+        <i className ="fas fa-chevron-left"></i>
       </button>
       <ul className={totalPages !== 1 ? "pagination" : "pagination hide"}>
         {slicePages.map((page) => (
@@ -115,7 +115,7 @@ const Pagination = ({
           );
         }}
       >
-        <i class="fas fa-chevron-right"></i>
+        <i className ="fas fa-chevron-right"></i>
       </button>
       <button
         className={
@@ -133,7 +133,7 @@ const Pagination = ({
           );
         }}
       >
-        <i class="fas fa-angle-double-right"></i>
+        <i className ="fas fa-angle-double-right"></i>
       </button>
     </nav>
   );

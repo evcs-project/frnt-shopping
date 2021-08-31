@@ -1,4 +1,13 @@
 .bookInfo__container {
   height: 100vh;
   display: flex;
+  width : 100%;
+}
+
+.bookInfo__img{
+  margin: 10px 8px;
+}
+
+.bookInfo__img img{
+  width: 240px;
 }
