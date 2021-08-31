@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+.pagination.hide {
+  display: none;
+}
+
 .pageContainer {
   display: flex;
   justify-content: center;

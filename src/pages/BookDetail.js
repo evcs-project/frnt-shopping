@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import "../css/bookDetail.css";
+import BookDetailRender from "./BookDetailRender";
 
 function BookDetail(book) {
-  console.log(book.location.state.book.id);
+  console.log("bookDetail함수");
+  const [bookDetail, setBookDetail] = useState([]);
+
   const bookId = book.location.state.book.id;
+
   const requestOptions = {
     method: "GET",
     redirect: "follow",
@@ -12,12 +17,16 @@ function BookDetail(book) {
     .then((response) => response.json())
     .then((result) => {
       console.log(result);
+
+      return result;
     })
-    .then((items) => {})
+    .then((items) => {
+      setBookDetail(items);
+      console.log(items);
+    })
     .catch((error) => console.log("error", error));
 
-  console.log(book);
-  return <span></span>;
+  return <BookDetailRender bookDetail={bookDetail}></BookDetailRender>;
 }
 
 export default BookDetail;

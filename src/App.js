@@ -68,6 +68,7 @@ function App() {
         })
         .then((items) => {
           setData(items);
+          console.log(items);
         })
         .catch((error) => console.log("error", error));
     }
@@ -101,7 +102,6 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         pageNumber = result.number;
-        console.log(result);
 
         return result.content.map((item) => ({
           isbn: item.isbn,
@@ -116,7 +116,6 @@ function App() {
       })
       .then((items) => {
         setData(items);
-        console.log(items);
       })
       .catch((error) => console.log("error", error));
   }

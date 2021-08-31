@@ -82,7 +82,7 @@ const Pagination = ({
       >
         <i class="fas fa-chevron-left"></i>
       </button>
-      <ul className="pagination">
+      <ul className={totalPages !== 1 ? "pagination" : "pagination hide"}>
         {slicePages.map((page) => (
           <li
             onClick={() =>
