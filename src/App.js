@@ -164,7 +164,10 @@ function App() {
         <Route path="/login" component={Login}></Route>
         <Route path="/Signup" component={Signup}></Route>
         <Route path="/BookDetail/:id">
-          <BookDetail handleBookId={handleBookId}></BookDetail>
+          <BookDetail
+            handleBookId={handleBookId}
+            component={BookDetail}
+          ></BookDetail>
         </Route>
       </div>
     </HashRouter>
