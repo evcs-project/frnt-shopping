@@ -174,6 +174,7 @@ function App() {
             bookDetail={bookDetail}
           ></BookDetail>
         </Route>
+        <Route path="/BookCart"></Route>
       </div>
     </BrowserRouter>
   );

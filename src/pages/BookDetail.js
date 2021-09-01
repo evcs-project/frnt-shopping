@@ -24,9 +24,18 @@ function BookDetail({ bookDetail, onChange }) {
           <div className="bookInfo__description">{bookDetail.description}</div>
         </div>
         <div className="bookInfo__cart">
-          <div className="bookInfo__cart__goCart">
-            <span>장바구니 넣기</span>
-          </div>
+          <Link
+            to={{
+              pathname: `/BookCart`,
+              state: {
+                bookDetail: bookDetail,
+              },
+            }}
+          >
+            <div className="bookInfo__cart__goCart">
+              <span>장바구니 넣기</span>
+            </div>
+          </Link>
           <div className="bookInfo__cart__buy">
             <span>바로 구매</span>
           </div>
