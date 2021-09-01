@@ -140,7 +140,7 @@ function App() {
       })
       .then((items) => {
         setBookDetail(items);
-       
+        
       })
       .catch((error) => console.log("error", error));
   }

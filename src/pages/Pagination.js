@@ -1,5 +1,5 @@
 import React from "react";
-import _, { constant, lte } from "lodash";
+import _, { constant, lte, slice } from "lodash";
 import "../css/page.css";
 
 const Pagination = ({
@@ -17,7 +17,7 @@ const Pagination = ({
   let startPage = point.start;
   let endPage = point.end;
   let slicePages = pages.slice(startPage, endPage);
-
+  
   // pages = pages.slice(point.start, point.end)
   // let realPagesArr = pages;
   // console.log(realPagesArr);
