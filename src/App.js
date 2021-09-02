@@ -2,9 +2,10 @@ import { HashRouter, BrowserRouter, Route, Router } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BookDetail from "./pages/BookDetail";
-import Main from './pages/Main'
+import { url } from "./pages/api";
+import BookCart from "./pages/BookCart";
 
 let queryLS = localStorage.getItem("query");
 let selectLS = localStorage.getItem("select");
@@ -21,7 +22,7 @@ function App() {
     increasePage: 0,
   });
 
-  const [bookDetail, setBookDetail] = useState([])
+  const [bookDetail, setBookDetail] = useState([]);
   let pageNumber;
 
   const search = (select, query) => {
@@ -41,7 +42,7 @@ function App() {
 
     if (select !== "" && query !== "") {
       fetch(
-        `http://13.125.22.103:8080/api/book/search?size=10&page=0&${select}=${query}`,
+        url + `api/book/search?size=10&page=0&${select}=${query}`,
         requestOptions
       )
         .then((response) => response.json())
@@ -95,7 +96,8 @@ function App() {
     };
 
     fetch(
-      `http://13.125.22.103:8080/api/book/search?size=10&page=${currentPage}&${selectLS}=${queryLS}`,
+      url +
+        `api/book/search?size=10&page=${currentPage}&${selectLS}=${queryLS}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -132,15 +134,20 @@ function App() {
       redirect: "follow",
     };
 
-    fetch(`http://13.125.22.103:8080/api/book/${bookId}`, requestOptions)
+    fetch(url + `api/book/${bookId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
         return result;
       })
-      .then((items) => {
-        setBookDetail(items);
-        
+      .then((item) => {
+        // item.section.replaceAll("\n", "\\n");
+
+        setBookDetail(item);
+        console.log(item.section);
+
+        // let test = item.section.replaceAll("\n", "\\n");
+        // console.log("test", test);
       })
       .catch((error) => console.log("error", error));
   }
@@ -156,14 +163,18 @@ function App() {
             onPageChange={handlePageChange}
             currentPage={currentPage}
             point={point}
-            handleBookId= {handleBookId}
+            handleBookId={handleBookId}
           />
         </Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/Signup" component={Signup}></Route>
-         <Route path="/BookDetail">
-          <BookDetail onChange={handleValueSet} bookDetail = {bookDetail}></BookDetail>
+        <Route path="/BookDetail">
+          <BookDetail
+            onChange={handleValueSet}
+            bookDetail={bookDetail}
+          ></BookDetail>
         </Route>
+        <Route path="/BookCart" component= {BookCart}></Route>
       </div>
     </BrowserRouter>
   );

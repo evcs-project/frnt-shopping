@@ -12,8 +12,6 @@ const Pagination = ({
   // if (pageCount === 1) return null;
   let pages = _.range(1, totalPages + 1);
 
-  console.log(currentPage);
-
   let startPage = point.start;
   let endPage = point.end;
   let slicePages = pages.slice(startPage, endPage);
@@ -23,6 +21,7 @@ const Pagination = ({
   // console.log(realPagesArr);
 
   console.log("total Page:", totalPages);
+  console.log("pages:", pages);
   if (pages.length > 10) {
     console.log("page개수 10보다 큼");
     pages = pages.slice(0, 10);
@@ -30,7 +29,6 @@ const Pagination = ({
 
   // let start = 10;
   // let end = 20;
-
   // let realPagesArr2 = new Array();
 
   // function showPage(pageStart, pageEnd) {
@@ -41,9 +39,6 @@ const Pagination = ({
   //   end += 10;
   // }
   // console.log(realPagesArr2);
-
-  console.log(point.increasePage);
-
   return (
     <nav className="pageContainer">
       <button
@@ -62,7 +57,7 @@ const Pagination = ({
           );
         }}
       >
-        <i className ="fas fa-angle-double-left"></i>
+        <i className="fas fa-angle-double-left"></i>
       </button>
       <button
         className={
@@ -80,9 +75,9 @@ const Pagination = ({
           );
         }}
       >
-        <i className ="fas fa-chevron-left"></i>
+        <i className="fas fa-chevron-left"></i>
       </button>
-      <ul className={totalPages !== 1 ? "pagination" : "pagination hide"}>
+      <ul className={pages.length !== 1 ? "pagination" : "pagination hide"}>
         {slicePages.map((page) => (
           <li
             onClick={() =>
@@ -115,7 +110,7 @@ const Pagination = ({
           );
         }}
       >
-        <i className ="fas fa-chevron-right"></i>
+        <i className="fas fa-chevron-right"></i>
       </button>
       <button
         className={
@@ -133,7 +128,7 @@ const Pagination = ({
           );
         }}
       >
-        <i className ="fas fa-angle-double-right"></i>
+        <i className="fas fa-angle-double-right"></i>
       </button>
     </nav>
   );
