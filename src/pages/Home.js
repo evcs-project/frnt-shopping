@@ -4,7 +4,7 @@ import "../css/Home.css";
 import Header from "./Header";
 import Main from "./Main";
 import Pagination from "./Pagination";
-import {Route} from 'react-router-dom';
+import { Route } from "react-router-dom";
 
 function Home({
   totalPages,
@@ -14,13 +14,19 @@ function Home({
   onPageChange,
   books,
   onChange,
-  handleBookId
+  handleBookId,
+  totalElements,
+  searchWord,
 }) {
-
   return (
     <>
-     <Header onChange = {onChange} />
-      <Main books={books} handleBookId= {handleBookId}/>
+      <Header onChange={onChange} />
+      <Main
+        books={books}
+        handleBookId={handleBookId}
+        totalElements={totalElements}
+        searchWord={searchWord}
+      />
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
@@ -28,8 +34,7 @@ function Home({
         setPoint={setPoint}
         point={point}
       ></Pagination>
-      </>
-      
+    </>
   );
 }
 

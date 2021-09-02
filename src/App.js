@@ -2,10 +2,11 @@ import { HashRouter, BrowserRouter, Route, Router } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BookDetail from "./pages/BookDetail";
 import Main from "./pages/Main";
 import { url } from "./pages/api";
+import BookCart from "./pages/BookCart";
 
 let queryLS = localStorage.getItem("query");
 let selectLS = localStorage.getItem("select");
@@ -23,6 +24,8 @@ function App() {
   });
 
   const [bookDetail, setBookDetail] = useState([]);
+  const [searchWord, setSearchWord] = useState([]);
+
   let pageNumber;
 
   const search = (select, query) => {
@@ -47,7 +50,7 @@ function App() {
       )
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
+          console.log("search함수", result);
           // result.totalpage
           totalPages = result.totalPages;
           totalElements = result.totalElements;
@@ -122,6 +125,7 @@ function App() {
   }
 
   const handleValueSet = (select, inputValue) => {
+    setSearchWord(inputValue);
     search(select, inputValue);
     localStorage.setItem("query", inputValue);
     localStorage.setItem("select", select);
@@ -164,6 +168,8 @@ function App() {
             currentPage={currentPage}
             point={point}
             handleBookId={handleBookId}
+            totalElements={totalElements}
+            searchWord={searchWord}
           />
         </Route>
         <Route path="/login" component={Login}></Route>
@@ -174,7 +180,9 @@ function App() {
             bookDetail={bookDetail}
           ></BookDetail>
         </Route>
-        <Route path="/BookCart"></Route>
+        <Route path="/BookCart" component={BookCart}>
+          <BookCart onChange={handleValueSet}></BookCart>
+        </Route>
       </div>
     </BrowserRouter>
   );

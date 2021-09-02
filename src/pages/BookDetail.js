@@ -1,10 +1,18 @@
 import React, { useState, useRef } from "react";
 import "../css/bookDetail.css";
 import Header from "./Header";
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 function BookDetail({ bookDetail, onChange }) {
-  console.log(bookDetail);
+  const [inputvalue, inputValueSet] = useState();
+
+  let inputRef = useRef();
+  console.log();
+
+  function handleInputValue() {
+    const inputValue = inputRef.current.value;
+    inputValueSet(inputValue);
+  }
 
   return (
     <>
@@ -24,15 +32,28 @@ function BookDetail({ bookDetail, onChange }) {
           <div className="bookInfo__description">{bookDetail.description}</div>
         </div>
         <div className="bookInfo__cart">
+          <div className="bookInfo__cart__numberBtn">
+            <span>수량</span>
+            <input
+              onChange={handleInputValue}
+              ref={inputRef}
+              type="number"
+              id="bookNumberBtn"
+              name="bookNumberBtn"
+              min="1"
+              max="100"
+            />
+          </div>
           <Link
             to={{
               pathname: `/BookCart`,
               state: {
-                bookDetail: bookDetail,
+                count: inputvalue,
+                id: bookDetail.bookId,
               },
             }}
           >
-            <div className="bookInfo__cart__goCart">
+            <div className="bookInfo__cart__goCart" onClick={handleInputValue}>
               <span>장바구니 넣기</span>
             </div>
           </Link>
