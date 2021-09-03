@@ -7,7 +7,6 @@ export const Header = ({onChange}) => {
   let history = useHistory();
 
   const HandleValueSet = () => {
-   
     console.log('header')
     if (inputRef.current.value == "") {
       alert("검색어를 입력하세요.");
@@ -20,7 +19,7 @@ export const Header = ({onChange}) => {
 
     onChange(select, inputValue);
     inputRef.current.value = "";
-    history.push('/')
+    history.push('/Main')
   };
 
   return (

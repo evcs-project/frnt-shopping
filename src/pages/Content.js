@@ -13,7 +13,7 @@ function Content({ book, handleBookId }) {
     <>
       <Link
         to={{
-          pathname: `/BookDetail`,
+          pathname: `/BookDetail/${book.id}`,
           state: {
             book: book,
           },
