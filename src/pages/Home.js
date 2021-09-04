@@ -2,6 +2,32 @@ import React, { Component, useRef } from "react";
 // import { useForm } from "react-hook-form";
 import "../css/Home.css";
 import Main from "./Main";
+<<<<<<< HEAD
+import Pagination from "./Pagination";
+
+function Home({
+  totalPages,
+  point,
+  setPoint,
+  currentPage,
+  onPageChange,
+  books,
+  handleBookId,
+  totalElements,
+  searchWord,
+}) {
+  return (
+    <>
+      <Main
+        books={books}
+        handleBookId={handleBookId}
+        totalElements={totalElements}
+        searchWord={searchWord}
+      />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+=======
 import Pagination from './Pagination'
 
 function Home({totalPages, onPageChange, books, onChange,currentPage }) {
@@ -70,7 +96,10 @@ function Home({totalPages, onPageChange, books, onChange,currentPage }) {
       <Pagination
         currentPage = {currentPage}
         totalPages = {totalPages}
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
         onPageChange={onPageChange}
+        setPoint={setPoint}
+        point={point}
       ></Pagination>
     </>
   );

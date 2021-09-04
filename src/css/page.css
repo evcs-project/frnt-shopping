@@ -1,14 +1,85 @@
+:root {
+  --blue-color: #5e91ff;
+  --gray-color: rgb(201, 201, 201);
+}
+
 .pagination {
   display: flex;
   justify-content: center;
+  padding: 0;
+}
+
+.pagination.hide {
+  display: none;
+}
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 45px;
 }
 
 .page-item {
   list-style: none;
-  margin: 0px 10px;
+  margin: 0px 5px;
+  border: 1px solid var(--gray-color);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-item:hover {
+  border: 1px solid var(--blue-color);
 }
 
 .page-item.active {
-  color: blue;
+  color: var(--blue-color);
   font-weight: bold;
+  border: 1px solid var(--blue-color);
+}
+
+.pageBtn {
+  display: none;
+}
+
+.pageBtn.active {
+  display: block;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  background-color: var(--blue-color);
+  color: white;
+  border-radius: 2px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageLastBtn,
+.pageFirstBtn {
+  display: none;
+}
+
+.pageLastBtn.active,
+.pageFirstBtn.active {
+  display: block;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  color: var(--blue-color);
+  border-radius: 2px;
+  margin: 5px;
+  border: 1px solid var(--gray-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
