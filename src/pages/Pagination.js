@@ -10,15 +10,10 @@ const Pagination = ({
   point,
 }) => {
   // if (pageCount === 1) return null;
-<<<<<<< HEAD
-  let pages = _.range(1, totalPages + 1);
-
-=======
   let pages =  _.range(1, totalPages + 1)
 
   console.log(pages)
   
->>>>>>> doyeon
   let startPage = point.start;
   let endPage = point.end;
   let slicePages = pages.slice(startPage, endPage);
@@ -46,10 +41,6 @@ const Pagination = ({
   //   end += 10;
   // }
   // console.log(realPagesArr2);
-<<<<<<< HEAD
-=======
-
->>>>>>> doyeon
   return (
     <nav className="pageContainer">
       <button
