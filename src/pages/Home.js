@@ -36,7 +36,7 @@ function Home({totalPages, onPageChange, books, onChange,currentPage }) {
           </li>
 
         </ul>
-
+        
         <div className="top-bar__searchBox">
           <div className="top-bar__search">
             <div className="top-bar__category">
