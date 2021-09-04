@@ -15,7 +15,6 @@ let totalElements;
 let totalPages;
 
 let currentPage = 0;
-
 function App() {
   const [data, setData] = useState([]);
   const [point, setPoint] = useState({
@@ -147,6 +146,7 @@ function App() {
     )
       .then((response) => response.json())
       .then((result) => {
+        pageNumber = result.number;
 
         return result.content.map((item) => ({
           isbn: item.isbn,
