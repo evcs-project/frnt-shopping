@@ -3,7 +3,7 @@ import Content from "./Content";
 import styles from "../css/content.module.css";
 import { url } from "./api";
 import Pagination from "./Pagination";
-import { Route, Link, useHistory ,useLocation } from "react-router-dom";
+import { Route, Link, useHistory, useLocation } from "react-router-dom";
 
 // totalPages={totalPages}
 //       currentPage={currentPage}
@@ -20,17 +20,15 @@ function Main({
   onPageChange,
   setPoint,
   point,
-  currentPage
+  currentPage,
 }) {
-  const location = useLocation()
-  const history = useHistory()
+  const location = useLocation();
+  const history = useHistory();
 
-  console.log(totalElements);
   const [bookArray, setBookArray] = useState([]);
   let queryLS = localStorage.getItem("query");
   let selectLS = localStorage.getItem("select");
 
-  
   useEffect(() => {
     let path = history.location.pathname;
 
@@ -38,13 +36,14 @@ function Main({
       method: "GET",
       redirect: "follow",
     };
-    
-    if(path === "/"){
+
+    if (path === "/") {
       return;
     }
-    
+
     fetch(
-      url + `api/book/search?size=10&page=${currentPage}&${selectLS}=${queryLS}`,
+      url +
+        `api/book/search?size=10&page=${currentPage}&${selectLS}=${queryLS}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -70,7 +69,7 @@ function Main({
         console.log(items);
       })
       .catch((error) => console.log("error", error));
-  });
+  }, []);
 
   return (
     <>

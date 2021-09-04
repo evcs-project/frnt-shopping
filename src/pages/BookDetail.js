@@ -1,28 +1,27 @@
-import React, { useEffect,useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../css/bookDetail.css";
-import { Route, Link, useHistory ,useLocation } from "react-router-dom";
-import { url } from './api'
+import { Route, Link, useHistory, useLocation } from "react-router-dom";
+import { url } from "./api";
 
-function BookDetail({ bookDetail }){
+function BookDetail({ bookDetail }) {
   const [inputvalue, inputValueSet] = useState();
   const [bookdetail, bookdetailSet] = useState([]);
 
   let inputRef = useRef();
-  const location = useLocation()
-  const history = useHistory()
+  const location = useLocation();
+  const history = useHistory();
 
-  console.log(bookdetail)
+  console.log(bookdetail);
   const book = bookdetail;
 
   useEffect(() => {
-    
     const bookId = history.location.pathname.replaceAll("/BookDetail/", "");
 
     const requestOptions = {
       method: "GET",
       redirect: "follow",
     };
-    
+
     fetch(url + `api/book/${bookId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
@@ -30,11 +29,11 @@ function BookDetail({ bookDetail }){
         return result;
       })
       .then((item) => {
-        console.log(item)
-        bookdetailSet(item)
+        console.log(item);
+        bookdetailSet(item);
       })
       .catch((error) => console.log("error", error));
-  })
+  }, []);
 
   function handleInputValue() {
     const inputValue = inputRef.current.value;
@@ -59,11 +58,15 @@ function BookDetail({ bookDetail }){
         </div>
 
         <div>
-        <input 
-        ref = {inputRef}
-        onChange = {handleInputValue}
-        type="number" id="tentacles" name="tentacles"
-       min="0" max="100" />
+          <input
+            ref={inputRef}
+            onChange={handleInputValue}
+            type="number"
+            id="tentacles"
+            name="tentacles"
+            min="0"
+            max="100"
+          />
         </div>
 
         <div className="bookInfo__cart">
@@ -100,12 +103,12 @@ function BookDetail({ bookDetail }){
       <div className="bookInfo__section">
         <div className="bookInfo__section__title">목차</div>
         {book.section != null
-          ? book.section.split("\n").map((line) => {
+          ? book.section.split("\n").map((line, index) => {
               return (
-                <>
+                <div key={index}>
                   {line != "" ? "-" : null} {line}
                   <br></br>
-                </>
+                </div>
               );
             })
           : null}
