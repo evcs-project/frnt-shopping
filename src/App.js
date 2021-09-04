@@ -10,27 +10,25 @@ import Main from './pages/Main'
 
 let queryLS = localStorage.getItem("query");
 let selectLS = localStorage.getItem("select");
-let totalElements;
 
+let totalElements;
 let totalPages;
+
 let currentPage = 0;
 
 function App() {
- 
   const [data, setData] = useState([]);
   const [point, setPoint] = useState({
-    page: 0,
-    start: 0,
-    end: 10,
-    increasePage: 0,
-  });
+      page: 0,
+      start: 0,
+      end: 10,
+      increasePage: 0
+    }
+  );
 
   const [bookDetail, setBookDetail] = useState([]);
   const [searchWord, setSearchWord] = useState([]);
-  
-  let pageNumber;
 
- 
   function handlePageChange(page, start, end, increasePage) {
       // setData({ ...data, currentPage: page });
       let queryLS = localStorage.getItem("query");
@@ -58,8 +56,6 @@ function App() {
       )
         .then((response) => response.json())
         .then((result) => {
-          pageNumber = result.number;
-  
           return result.content.map((item) => ({
             isbn: item.isbn,
             id: item.bookId,
@@ -76,7 +72,6 @@ function App() {
         })
         .catch((error) => console.log("error", error));
   }
-  
 
   const search = (select, query) => {
     const requestOptions = {
@@ -103,11 +98,9 @@ function App() {
     //       // result.totalpage
     //       totalPages = result.totalPages;
     //       totalElements = result.totalElements;
-
     //       if (result.content.length === 0) {
     //         alert("찾으시는 책이 없습니다.");
     //       }
-
     //       return result.content.map((item) => ({
     //         isbn: item.isbn,
     //         id: item.bookId,
@@ -125,7 +118,6 @@ function App() {
     //     })
     //     .catch((error) => console.log("error", error));
     // }
-    
   };
 
   function handlePageChange(page, start, end, increasePage) {
@@ -155,7 +147,6 @@ function App() {
     )
       .then((response) => response.json())
       .then((result) => {
-        pageNumber = result.number;
 
         return result.content.map((item) => ({
           isbn: item.isbn,

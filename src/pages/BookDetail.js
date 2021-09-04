@@ -1,10 +1,9 @@
 import React, { useEffect,useState, useRef } from "react";
 import "../css/bookDetail.css";
-import Header from "./Header";
 import { Route, Link, useHistory ,useLocation } from "react-router-dom";
-import {url} from './api'
+import { url } from './api'
 
-function BookDetail({ bookDetail}) {
+function BookDetail({ bookDetail }){
   const [inputvalue, inputValueSet] = useState();
   const [bookdetail, bookdetailSet] = useState([]);
 
@@ -24,7 +23,7 @@ function BookDetail({ bookDetail}) {
       method: "GET",
       redirect: "follow",
     };
-
+    
     fetch(url + `api/book/${bookId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
@@ -42,7 +41,7 @@ function BookDetail({ bookDetail}) {
     const inputValue = inputRef.current.value;
     inputValueSet(inputValue);
   }
-  
+
   return (
     <>
       <div className="bookInfo__container">

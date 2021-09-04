@@ -24,7 +24,7 @@ function Main({ select, query, handleBookId, totalElements, searchWord }) {
         .then((result) => {
           console.log("search함수", result);
           totalElements = result.totalElements;
-
+          
           if (result.content.length === 0) {
             alert("찾으시는 책이 없습니다.");
           }

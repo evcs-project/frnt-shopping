@@ -5,11 +5,11 @@ class Login extends Component {
   render() {
     return (
       <>
-      <ul className="top-bar__menus">
+      {/* <ul className="top-bar__menus">
         <li className="top-bar__menu"><a href = "/">홈</a></li>
         <li className="top-bar__menu"><a href = "/Signup">회원가입</a></li>
         <li className="top-bar__menu">마이페이지</li>
-      </ul>
+      </ul> */}
 
       <div className = "container">
         <div className="border">
