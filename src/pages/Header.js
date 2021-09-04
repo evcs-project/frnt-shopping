@@ -19,7 +19,7 @@ export const Header = ({onChange}) => {
 
     onChange(select, inputValue);
     inputRef.current.value = "";
-    history.push('/')
+    history.push('/Main')
   };
 
   return (
@@ -57,7 +57,7 @@ export const Header = ({onChange}) => {
           maxLength="15"
           placeholder="for search"
         ></input>
-        <button onClick={HandleValueSet} id="searchBtn">
+        <button onClick={() => HandleValueSet()} id="searchBtn">
           <i className="fas fa-search fa-2x"></i>
         </button>
       </div>

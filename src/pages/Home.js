@@ -1,11 +1,9 @@
 import React, { Component, useRef } from "react";
 // import { useForm } from "react-hook-form";
 import "../css/Home.css";
-import Header from "./Header";
 import Main from "./Main";
 <<<<<<< HEAD
 import Pagination from "./Pagination";
-import { Route } from "react-router-dom";
 
 function Home({
   totalPages,
@@ -14,14 +12,12 @@ function Home({
   currentPage,
   onPageChange,
   books,
-  onChange,
   handleBookId,
   totalElements,
   searchWord,
 }) {
   return (
     <>
-      <Header onChange={onChange} />
       <Main
         books={books}
         handleBookId={handleBookId}

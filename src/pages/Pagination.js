@@ -1,5 +1,5 @@
 import React from "react";
-import _, { constant, lte } from "lodash";
+import _, { constant, lte, slice } from "lodash";
 import "../css/page.css";
 
 <<<<<<< HEAD
@@ -16,6 +16,7 @@ const Pagination = ({
   let startPage = point.start;
   let endPage = point.end;
   let slicePages = pages.slice(startPage, endPage);
+<<<<<<< HEAD
 =======
 const Pagination = ({ totalPage, onPageChange, currentPage }) => {
   const pageCount = totalPage;
@@ -34,6 +35,9 @@ const Pagination = ({ totalPage, onPageChange, currentPage }) => {
   }
 >>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
 
+=======
+  
+>>>>>>> 5fe237c33fa72eaeb5fc9dc814225460e2686aea
   // pages = pages.slice(point.start, point.end)
   // let realPagesArr = pages;
   // console.log(realPagesArr);
@@ -47,7 +51,6 @@ const Pagination = ({ totalPage, onPageChange, currentPage }) => {
 
   // let start = 10;
   // let end = 20;
-
   // let realPagesArr2 = new Array();
 
   // function showPage(pageStart, pageEnd) {

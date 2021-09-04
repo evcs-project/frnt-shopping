@@ -1,12 +1,12 @@
-import { HashRouter, BrowserRouter, Route, Router } from "react-router-dom";
+import { HashRouter, BrowserRouter, Route, Router,  useHistory, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import React, { useState, useEffect } from "react";
 import BookDetail from "./pages/BookDetail";
-import Main from "./pages/Main";
 import { url } from "./pages/api";
-import BookCart from "./pages/BookCart";
+import Header from './pages/Header'
+import Main from './pages/Main'
 
 let queryLS = localStorage.getItem("query");
 let selectLS = localStorage.getItem("select");
@@ -16,9 +16,11 @@ let totalPages;
 let currentPage = 0;
 
 function App() {
+ 
   const [data, setData] = useState([]);
 <<<<<<< HEAD
   const [point, setPoint] = useState({
+    page: 0,
     start: 0,
     end: 10,
     increasePage: 0,
@@ -26,34 +28,41 @@ function App() {
 
   const [bookDetail, setBookDetail] = useState([]);
   const [searchWord, setSearchWord] = useState([]);
-
+  
   let pageNumber;
 =======
   let totalPages = 0;
 >>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
 
-  const search = (select, query) => {
-    console.log("search 함수 실행");
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
+ 
+  function handlePageChange(page, start, end, increasePage) {
+      // setData({ ...data, currentPage: page });
+      let queryLS = localStorage.getItem("query");
+      let selectLS = localStorage.getItem("select");
+      currentPage = page - 1;
+  
+      const point = {
+        start: start,
+        end: end,
+        increasePage: increasePage,
+      };
 
-    const point = {
-      start: 0,
-      end: 10,
-      increasePage: 0,
-    };
+      setPoint(point);
+      console.log("point : ", point);
+  
+      const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+      };
 
-    setPoint(point);
-
-    if (select !== "" && query !== "") {
       fetch(
-        url + `api/book/search?size=10&page=0&${select}=${query}`,
+        url +
+          `api/book/search?size=10&page=${currentPage}&${selectLS}=${queryLS}`,
         requestOptions
       )
         .then((response) => response.json())
         .then((result) => {
+<<<<<<< HEAD
 <<<<<<< HEAD
           console.log("search함수", result);
           // result.totalpage
@@ -68,6 +77,10 @@ function App() {
             alert("찾으시는 책이 없습니다.");
           }
 
+=======
+          pageNumber = result.number;
+  
+>>>>>>> 5fe237c33fa72eaeb5fc9dc814225460e2686aea
           return result.content.map((item) => ({
             isbn: item.isbn,
             id: item.bookId,
@@ -81,10 +94,59 @@ function App() {
         })
         .then((items) => {
           setData(items);
-          console.log(items);
         })
         .catch((error) => console.log("error", error));
-    }
+  }
+  
+
+  const search = (select, query) => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    const point = {
+      start: 0,
+      end: 10,
+      increasePage: 0,
+    };
+
+    setPoint(point);
+
+    // if (select !== "" && query !== "") {
+    //   fetch(
+    //     url + `api/book/search?size=10&page=0&${select}=${query}`,
+    //     requestOptions
+    //   )
+    //     .then((response) => response.json())
+    //     .then((result) => {
+    //       console.log("search함수", result);
+    //       // result.totalpage
+    //       totalPages = result.totalPages;
+    //       totalElements = result.totalElements;
+
+    //       if (result.content.length === 0) {
+    //         alert("찾으시는 책이 없습니다.");
+    //       }
+
+    //       return result.content.map((item) => ({
+    //         isbn: item.isbn,
+    //         id: item.bookId,
+    //         title: item.bookNm,
+    //         category: item.categoryName,
+    //         price: item.price,
+    //         publisher: item.publisher,
+    //         img: item.thumbnailUrl,
+    //         writer: item.writer,
+    //       }));
+    //     })
+    //     .then((items) => {
+    //       setData(items);
+    //       console.log(items);
+    //     })
+    //     .catch((error) => console.log("error", error));
+    // }
+    
   };
 
 <<<<<<< HEAD
@@ -145,10 +207,10 @@ function App() {
         setData(items);
       })
       .catch((error) => console.log("error", error));
-  }
+}
 
   const handleValueSet = (select, inputValue) => {
-    setSearchWord(inputValue);
+
     search(select, inputValue);
     localStorage.setItem("query", inputValue);
     localStorage.setItem("select", select);
@@ -171,22 +233,20 @@ function App() {
         // item.section.replaceAll("\n", "\\n");
 
         setBookDetail(item);
-        console.log(item.section);
-
         // let test = item.section.replaceAll("\n", "\\n");
         // console.log("test", test);
       })
       .catch((error) => console.log("error", error));
   }
-
+  
   return (
 <<<<<<< HEAD
     <BrowserRouter>
       <div className="App">
+      <Header onChange={handleValueSet} />
         <Route path="/" exact={true}>
           <Home
             totalPages={totalPages}
-            books={data}
             onChange={handleValueSet}
             onPageChange={handlePageChange}
             currentPage={currentPage}
@@ -196,17 +256,17 @@ function App() {
             searchWord={searchWord}
           />
         </Route>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/Signup" component={Signup}></Route>
-        <Route path="/BookDetail">
-          <BookDetail
-            onChange={handleValueSet}
-            bookDetail={bookDetail}
-          ></BookDetail>
+       <Route path = "/Main">
+         <Main select = {selectLS} handleBookId={handleBookId} books={data} query = {queryLS}></Main>
+       </Route>
+        <Route path="/login" component={Login} exact={true}></Route>
+        <Route path="/Signup" component={Signup} exact={true}></Route>
+        <Route path = '/BookDetail'>
+            <BookDetail bookDetail = {bookDetail} ></BookDetail>
         </Route>
-        <Route path="/BookCart" component={BookCart}>
-          <BookCart onChange={handleValueSet}></BookCart>
-        </Route>
+        {/* <Route path="/BookCart" component={BookCart} exact={true}>
+      
+        </Route> */}
       </div>
     </BrowserRouter>
 =======
