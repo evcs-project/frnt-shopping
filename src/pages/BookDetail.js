@@ -15,8 +15,7 @@ function BookDetail({ bookDetail }){
   const book = bookdetail;
 
   useEffect(() => {
-    console.log(location.pathname)
-    console.log(history.location.pathname)
+    
     const bookId = history.location.pathname.replaceAll("/BookDetail/", "");
 
     const requestOptions = {

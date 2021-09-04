@@ -9,7 +9,8 @@ const Pagination = ({
   setPoint,
   point,
 }) => {
-  // if (pageCount === 1) return null;
+  console.log(point)
+
   let pages =  _.range(1, totalPages + 1)
 
   console.log(pages)
@@ -17,30 +18,15 @@ const Pagination = ({
   let startPage = point.start;
   let endPage = point.end;
   let slicePages = pages.slice(startPage, endPage);
-  
-  // pages = pages.slice(point.start, point.end)
-  // let realPagesArr = pages;
-  // console.log(realPagesArr);
 
   console.log("total Page:", totalPages);
   console.log("pages:", pages);
+  
   if (pages.length > 10) {
     console.log("page개수 10보다 큼");
     pages = pages.slice(0, 10);
   }
 
-  // let start = 10;
-  // let end = 20;
-  // let realPagesArr2 = new Array();
-
-  // function showPage(pageStart, pageEnd) {
-  //   console.log(pageStart, pageEnd, "자름");
-  //   realPagesArr2 = realPagesArr.slice(pageStart, pageEnd);
-
-  //   start += 10;
-  //   end += 10;
-  // }
-  // console.log(realPagesArr2);
   return (
     <nav className="pageContainer">
       <button

@@ -15,7 +15,9 @@ let totalElements;
 let totalPages;
 
 let currentPage = 0;
+
 function App() {
+
   const [data, setData] = useState([]);
   const [point, setPoint] = useState({
       page: 0,
@@ -27,6 +29,7 @@ function App() {
 
   const [bookDetail, setBookDetail] = useState([]);
   const [searchWord, setSearchWord] = useState([]);
+  const [usecurrentpage, setUsecurrentpage] = useState(0);
 
   function handlePageChange(page, start, end, increasePage) {
       // setData({ ...data, currentPage: page });
@@ -86,37 +89,37 @@ function App() {
 
     setPoint(point);
 
-    // if (select !== "" && query !== "") {
-    //   fetch(
-    //     url + `api/book/search?size=10&page=0&${select}=${query}`,
-    //     requestOptions
-    //   )
-    //     .then((response) => response.json())
-    //     .then((result) => {
-    //       console.log("search함수", result);
-    //       // result.totalpage
-    //       totalPages = result.totalPages;
-    //       totalElements = result.totalElements;
-    //       if (result.content.length === 0) {
-    //         alert("찾으시는 책이 없습니다.");
-    //       }
-    //       return result.content.map((item) => ({
-    //         isbn: item.isbn,
-    //         id: item.bookId,
-    //         title: item.bookNm,
-    //         category: item.categoryName,
-    //         price: item.price,
-    //         publisher: item.publisher,
-    //         img: item.thumbnailUrl,
-    //         writer: item.writer,
-    //       }));
-    //     })
-    //     .then((items) => {
-    //       setData(items);
-    //       console.log(items);
-    //     })
-    //     .catch((error) => console.log("error", error));
-    // }
+    if (select !== "" && query !== "") {
+      fetch(
+        url + `api/book/search?size=10&page=0&${select}=${query}`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("search함수", result);
+          // result.totalpage
+          totalPages = result.totalPages;
+          totalElements = result.totalElements;
+          if (result.content.length === 0) {
+            alert("찾으시는 책이 없습니다.");
+          }
+          return result.content.map((item) => ({
+            isbn: item.isbn,
+            id: item.bookId,
+            title: item.bookNm,
+            category: item.categoryName,
+            price: item.price,
+            publisher: item.publisher,
+            img: item.thumbnailUrl,
+            writer: item.writer,
+          }));
+        })
+        .then((items) => {
+          setData(items);
+          console.log(items);
+        })
+        .catch((error) => console.log("error", error));
+    }
   };
 
   function handlePageChange(page, start, end, increasePage) {
@@ -124,6 +127,7 @@ function App() {
     let queryLS = localStorage.getItem("query");
     let selectLS = localStorage.getItem("select");
     currentPage = page - 1;
+    setUsecurrentpage(currentPage);
 
     const point = {
       start: start,
@@ -146,8 +150,7 @@ function App() {
     )
       .then((response) => response.json())
       .then((result) => {
-        pageNumber = result.number;
-
+       
         return result.content.map((item) => ({
           isbn: item.isbn,
           id: item.bookId,
@@ -201,7 +204,7 @@ function App() {
       <Header onChange={handleValueSet} />
         <Route path="/" exact={true}>
           <Home
-            totalPages={totalPages}
+           totalPages={totalPages}
             onChange={handleValueSet}
             onPageChange={handlePageChange}
             currentPage={currentPage}
@@ -212,7 +215,17 @@ function App() {
           />
         </Route>
        <Route path = "/Main">
-         <Main select = {selectLS} handleBookId={handleBookId} books={data} query = {queryLS}></Main>
+         <Main 
+          select = {selectLS} 
+          handleBookId={handleBookId}
+          books={data}
+          query = {queryLS}
+          point = {point}
+          totalPages={totalPages}
+          onPageChange = {handlePageChange}
+          currentPage = {usecurrentpage}
+           >
+           </Main>
        </Route>
         <Route path="/login" component={Login} exact={true}></Route>
         <Route path="/Signup" component={Signup} exact={true}></Route>
