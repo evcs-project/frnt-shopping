@@ -23,10 +23,10 @@ function Login() {
 
     const requestOptions = {
       method: "POST",
-      // redirect: "follow",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         email: UseInputIDvalue,
         password: UseInputPWvalue,
@@ -38,8 +38,10 @@ function Login() {
       `http://13.125.22.103:8080/api/token/authenticate`,
       requestOptions
     )
-      .then((response) => console.log(response))
-      .then((data) => console.log(data));
+      .then((response) => response.json())
+      .then((result) => {
+        return result;
+      });
   }
 
   {

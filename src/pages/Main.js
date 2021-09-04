@@ -69,7 +69,7 @@ function Main({
         console.log(items);
       })
       .catch((error) => console.log("error", error));
-  }, []);
+  }, [currentPage, queryLS]);
 
   return (
     <>

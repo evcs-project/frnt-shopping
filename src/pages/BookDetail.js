@@ -58,7 +58,7 @@ function BookDetail({ bookDetail }) {
         </div>
 
         <div>
-          <input
+          {/* <input
             ref={inputRef}
             onChange={handleInputValue}
             type="number"
@@ -66,12 +66,12 @@ function BookDetail({ bookDetail }) {
             name="tentacles"
             min="0"
             max="100"
-          />
+          /> */}
         </div>
 
         <div className="bookInfo__cart">
           <div className="bookInfo__cart__numberBtn">
-            <span>수량</span>
+            {/* <span>수량</span>
             <input
               onChange={handleInputValue}
               ref={inputRef}
@@ -80,9 +80,9 @@ function BookDetail({ bookDetail }) {
               name="bookNumberBtn"
               min="1"
               max="100"
-            />
+            /> */}
           </div>
-          <Link
+          {/* <Link
             to={{
               pathname: `/BookCart`,
               state: {
@@ -94,10 +94,10 @@ function BookDetail({ bookDetail }) {
             <div className="bookInfo__cart__goCart" onClick={handleInputValue}>
               <span>장바구니 넣기</span>
             </div>
-          </Link>
-          <div className="bookInfo__cart__buy">
+          </Link> */}
+          {/* <div className="bookInfo__cart__buy">
             <span>바로 구매</span>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="bookInfo__section">

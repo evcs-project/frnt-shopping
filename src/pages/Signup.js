@@ -27,18 +27,23 @@ function Signup() {
     if (PW2inputRef.current.value !== UseInputPWvalue) {
       alert("비밀번호가 맞지 않습니다.");
     }
+
+    const roleNameArr = [];
+
+    roleNameArr.push("USER");
+
     console.log(UseInputIDvalue, UseInputNamevalue, UseInputPWvalue);
     const requestOptions = {
       method: "POST",
       redirect: "follow",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         email: UseInputIDvalue,
         name: UseInputNamevalue,
         password: UseInputPWvalue,
-        // roleName: "USER",
+        roleName: roleNameArr,
       }),
     };
     fetch(
