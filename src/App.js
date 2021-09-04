@@ -17,6 +17,7 @@ let currentPage = 0;
 
 function App() {
   const [data, setData] = useState([]);
+<<<<<<< HEAD
   const [point, setPoint] = useState({
     start: 0,
     end: 10,
@@ -27,6 +28,9 @@ function App() {
   const [searchWord, setSearchWord] = useState([]);
 
   let pageNumber;
+=======
+  let totalPages = 0;
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
 
   const search = (select, query) => {
     console.log("search 함수 실행");
@@ -50,10 +54,15 @@ function App() {
       )
         .then((response) => response.json())
         .then((result) => {
+<<<<<<< HEAD
           console.log("search함수", result);
           // result.totalpage
           totalPages = result.totalPages;
           totalElements = result.totalElements;
+=======
+          console.log(result);
+          totalPages = result.totalPages;
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
 
           if (result.content.length === 0) {
             alert("찾으시는 책이 없습니다.");
@@ -78,8 +87,18 @@ function App() {
     }
   };
 
+<<<<<<< HEAD
   function handlePageChange(page, start, end, increasePage) {
     // setData({ ...data, currentPage: page });
+=======
+  let currentPage = 0;
+
+  function handlePageChange (page) {
+    // setData({ ...data, currentPage: page });
+    currentPage = page;
+    console.log(currentPage)
+    
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
     let queryLS = localStorage.getItem("query");
     let selectLS = localStorage.getItem("select");
     currentPage = page - 1;
@@ -99,8 +118,12 @@ function App() {
     };
 
     fetch(
+<<<<<<< HEAD
       url +
         `api/book/search?size=10&page=${currentPage}&${selectLS}=${queryLS}`,
+=======
+      `http://13.125.22.103:8080/api/book/search?size=10&page=${pageNum}&${selectLS}=${queryLS}`,
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
       requestOptions
     )
       .then((response) => response.json())
@@ -157,6 +180,7 @@ function App() {
   }
 
   return (
+<<<<<<< HEAD
     <BrowserRouter>
       <div className="App">
         <Route path="/" exact={true}>
@@ -185,6 +209,22 @@ function App() {
         </Route>
       </div>
     </BrowserRouter>
+=======
+    <div className="App">
+      <Route path="/" exact={true}>
+        <Home
+          books={data}
+          totalPages = {totalPages}
+          onChange={handleValueSet}
+          onPageChange={handlePageChange}
+          currentPage={currentPage}
+
+        />
+      </Route>
+      <Route path="/login" component={Login}></Route>
+      <Route path="/Signup" component={Signup}></Route>
+    </div>
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
   );
 }
 

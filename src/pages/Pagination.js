@@ -2,6 +2,7 @@ import React from "react";
 import _, { constant, lte } from "lodash";
 import "../css/page.css";
 
+<<<<<<< HEAD
 const Pagination = ({
   totalPages,
   onPageChange,
@@ -15,6 +16,23 @@ const Pagination = ({
   let startPage = point.start;
   let endPage = point.end;
   let slicePages = pages.slice(startPage, endPage);
+=======
+const Pagination = ({ totalPage, onPageChange, currentPage }) => {
+  const pageCount = totalPage;
+  let pages = _.range(1, pageCount + 1);
+
+  let start = 0;
+  let end = 10;
+  pages.slice(start, end)
+  
+  const showPage = (pageStart, pageEnd) => {
+    console.log(pageStart)
+    console.log(pageEnd)
+    pages = pages.slice(pageStart, pageEnd)
+    console.log(pages)
+    onPageChange()
+  }
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
 
   // pages = pages.slice(point.start, point.end)
   // let realPagesArr = pages;
@@ -41,6 +59,7 @@ const Pagination = ({
   // }
   // console.log(realPagesArr2);
   return (
+<<<<<<< HEAD
     <nav className="pageContainer">
       <button
         className={
@@ -131,6 +150,24 @@ const Pagination = ({
       >
         <i className="fas fa-angle-double-right"></i>
       </button>
+=======
+    <nav>
+      <ul className="pagination">
+        {
+          pages.map((page) => (
+            <li
+              key={page}
+              className={page === currentPage ? "page-item active" : "page-item"}
+              style={{ cursor: "pointer" }}
+          >
+            <a className="page-link" onClick={() => onPageChange(page)}>
+              {page}
+            </a>{" "}
+          </li>
+        ))}
+      </ul>
+      <button onClick = {() => onPageChange(currentPage+10)}>버튼</button>
+>>>>>>> 6b7e7a661c39805a57d0d7c86c356404b116952e
     </nav>
   );
 };
